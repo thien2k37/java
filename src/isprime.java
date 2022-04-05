@@ -3,34 +3,27 @@ import java.util.Scanner;
 public class isprime {
     public static void main(String args[])
     {
-        int number;
-        int count = 1;
-        int n = 3;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập vào n số nguyên tố đầu tiên:");
-        number = scanner.nextInt();
-        if (number >= 1)
-        {
-            System.out.println(number+" Số nguyên tố đầu tiên là:");
-            System.out.println(2);
-        }
-        for ( int i = 2 ; i <= number ;  )
-        {
-            for ( int j = 2 ; j <= Math.sqrt(n) ; j++ )
-            {
-                if ( n % j == 0 )
-                {
-                    count = 0;
+        String str;
+        int number = 2;
+        int count = 1;
+
+        while (count <= 20) {
+            str = "la SNT";
+            for (int i = 2; i < number; i++) {
+                if (number % i == 0) {
+                    str = "khong phai snt";
                     break;
                 }
             }
-            if ( count != 0 )
-            {
-                System.out.println(n);
-                i++;
+            if(str.equals("la SNT")) {
+                System.out.println(number);
+                count++;
             }
-            count = 1;
-            n++;
+            number++;
         }
+
+
+
     }
 }
