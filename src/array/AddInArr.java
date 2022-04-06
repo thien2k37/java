@@ -1,7 +1,7 @@
 package array;
 import java.util.Scanner;
 
-public class add_in_arr {
+public class AddInArr {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int[] arr = {12, 23, 5, 6, 7};

@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Doc_so_thanh_chu {
+public class DoiSoThanhChu {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String[] arr = {"không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín", "mười"};

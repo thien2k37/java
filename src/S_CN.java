@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class s_cn {
+public class S_CN {
     public static void main(String[] args) {
         float width;
         float height;

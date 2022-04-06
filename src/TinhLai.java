@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class tinh_lai {
+public class TinhLai {
     public static void main(String[] args) {
         double money = 1.0;
         int month = 1;

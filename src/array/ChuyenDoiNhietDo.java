@@ -1,7 +1,7 @@
 package array;
 import java.util.Scanner;
 
-public class chuyendoi_nhietdo {
+public class ChuyenDoiNhietDo {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         double fahrenheit;

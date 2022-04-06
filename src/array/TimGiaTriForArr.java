@@ -1,7 +1,7 @@
 package array;
 import java.util.Scanner;
 
-public class tim_gia_tri_trong_mang {
+public class TimGiaTriForArr {
     public static void main(String[] args) {
         String[] studens = {"thien", "son", "hunw", "huy", "nam"};
         Scanner sc = new Scanner(System.in);

@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 
-public class chuyen_doi_tien_te {
+public class ChuyenDoiTienTe {
     public static double C_F(double C) {
         double f;
         f = (9/5) * C  + 32;
