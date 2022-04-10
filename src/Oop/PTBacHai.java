@@ -7,7 +7,6 @@ public class CanBacHai {
         sc.getInformation();
         sc.display();
         System.out.println(sc.getDiscriminant());
-
     }
 }
 class QuadraticEquation{
