@@ -1,17 +1,15 @@
 package Oop;
 import java.util.Scanner;
 
-public class CanBacHai {
+public class PTBacHai {
     public static void main(String[] args) {
-        QuadraticEquation sc = new QuadraticEquation();
-        sc.getInformation();
-        sc.display();
-        System.out.println(sc.getDiscriminant());
+        QuadraticEquation sh = new QuadraticEquation();
+        sh.display();
     }
 }
 class QuadraticEquation{
-    double a ,b, c;
-    public void getInformation() {
+    private double a, b, c;
+    public QuadraticEquation() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhập a: ");
         a = sc.nextDouble();
@@ -20,6 +18,30 @@ class QuadraticEquation{
         System.out.println("Nhập c: ");
         c = sc.nextDouble();
     }
+    public QuadraticEquation(double a, double b, double c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+    public double getA() {
+        return a;
+    }
+    public void setA(double a) {
+        this.a = a;
+    }
+    public double getB() {
+        return b;
+    }
+    public void setB(double b) {
+        this.b = b;
+    }
+    public double getC() {
+        return c;
+    }
+    public void setC(double c) {
+        this.c = c;
+    }
+
     public double getDiscriminant() {
         return b * b - 4 * a * c;
     }
@@ -43,3 +65,7 @@ class QuadraticEquation{
         }
     }
 }
+
+
+
+

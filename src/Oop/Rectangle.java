@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 class HCN {
     // 2 thuộc tính chieuf dai , rông
-    double cd, cr;
+    double cd , cr;
     /*getInformation() là phương thức nhập dữ liệu cho thuộc tính length và width từ bàn phím.*/
     public void getInformation() {
         Scanner sc = new Scanner((System.in));
