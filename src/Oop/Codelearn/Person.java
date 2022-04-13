@@ -1,2 +1,4 @@
-package Oop.Codelearn;public class Person {
+package Oop.Codelearn;
+
+public class Person {
 }
