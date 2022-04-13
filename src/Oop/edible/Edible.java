@@ -1,4 +1,5 @@
 package Oop.edible;
 
-public class Edible {
+public interface Edible {
+    String howToEat();
 }
