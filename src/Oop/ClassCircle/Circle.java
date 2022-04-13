@@ -1,12 +1,11 @@
 package Oop.ClassCircle;
-import java.util.Scanner;
 
 public class Circle {
     private double radius;
     private String color;
     private boolean filled;
 
-    public Circle() {
+    public Circle(double v) {
        /* Scanner sc = new Scanner(System.in);
         System.out.println("input radius: ");
         radius = sc.nextDouble();

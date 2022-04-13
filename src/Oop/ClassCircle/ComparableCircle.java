@@ -6,6 +6,7 @@ public class ComparableCircle extends Circle
         implements Comparable<ComparableCircle> {
 
     public ComparableCircle() {
+        super(3.6);
     }
 
 
@@ -20,6 +21,7 @@ public class ComparableCircle extends Circle
         else return 1;
     }
 }
+
 class ComparableCircleTest {
     public static void main(String[] args) {
         ComparableCircle[] circles = new ComparableCircle[3];

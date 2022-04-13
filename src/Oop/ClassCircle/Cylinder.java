@@ -5,12 +5,14 @@ public class Cylinder extends Circle{
     private double height;
 
     public Cylinder() {
+        super(3.6);
         System.out.println("input height: ");
         Scanner sc = new Scanner(System.in);
         height = sc.nextDouble();
     }
 
     public Cylinder(double height) {
+        super(3.6);
         this.height = height;
     }
 
