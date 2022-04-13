@@ -31,7 +31,7 @@ public class Cylinder extends Circle{
     }
     @Override
     public String toString() {
-        super.display();
+        super.toString();
         return "height: " + height + "\n" + "Volume: " + getVolume() ;
     }
 }

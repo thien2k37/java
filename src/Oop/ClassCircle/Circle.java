@@ -3,15 +3,16 @@ import java.util.Scanner;
 
 public class Circle {
     private double radius;
-    public String color;
+    private String color;
+    private boolean filled;
 
     public Circle() {
-        Scanner sc = new Scanner(System.in);
+       /* Scanner sc = new Scanner(System.in);
         System.out.println("input radius: ");
         radius = sc.nextDouble();
         Scanner ss = new Scanner(System.in);
         System.out.println("input color radius: ");
-        color = ss.nextLine();
+        color = ss.nextLine();*/
     }
 
     public Circle(double radius, String color) {
@@ -34,18 +35,32 @@ public class Circle {
     public void setColor(String color) {
         this.color = color;
     }
+
+    public boolean isFilled() {
+        return filled;
+    }
+
+    public void setFilled(boolean filled) {
+        this.filled = filled;
+    }
+
     public double getArea() {
         return radius * radius * Math.PI;
     }
-    public void display() {
-        System.out.println("Radius: " + radius);
-        System.out.println("Color: " + color);
-        System.out.println("Area: " + getArea());
+
+    @Override
+    public String toString() {
+        return "radius=" + radius +
+                ", color='" + color + '\'' +
+                ", filled=" + filled + '\'' +
+                ", Area= " + getArea() +
+                '}';
     }
+
 }
 class Hi {
     public static void main(String[] args) {
-        Circle sc = new Circle();
-        sc.display();
+        Circle sc = new Circle(1.2, "red");
+        System.out.println(sc);
     }
 }
