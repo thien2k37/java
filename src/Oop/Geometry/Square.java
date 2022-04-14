@@ -1,6 +1,6 @@
 package Oop.Geometry;
 
-public class Square extends Rectangle {
+public class Square extends Rectangle{
     public Square() {
     }
 
@@ -22,29 +22,10 @@ public class Square extends Rectangle {
     }
 
     @Override
-    public void setWidth(double width) {
-        setSide(width);
-    }
-
-    @Override
-    public void setLength(double length) {
-        setSide(length);
-    }
-
-    @Override
     public String toString() {
         return "A Square with side="
                 + getSide()
                 + ", which is a subclass of "
                 + super.toString();
-    }
-}
- class SquareTest {
-    public static void main(String[] args) {
-        Shape shape = new Shape();
-        System.out.println(shape);
-
-        shape = new Shape("red", false);
-        System.out.println(shape);
     }
 }

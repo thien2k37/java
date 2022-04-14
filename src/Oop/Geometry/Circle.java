@@ -1,6 +1,6 @@
 package Oop.Geometry;
 
-public class Circle extends Shape {
+public class Circle extends Shape  implements Resizeable{
     private double radius = 1.0;
 
     public Circle() {
@@ -31,6 +31,7 @@ public class Circle extends Shape {
         return 2 * radius * Math.PI;
     }
 
+
     @Override
     public String toString() {
         return "A Circle with radius="
@@ -38,16 +39,9 @@ public class Circle extends Shape {
                 + ", which is a subclass of "
                 + super.toString();
     }
-}
-class CircleTest {
-    public static void main(String[] args) {
-        Circle circle = new Circle();
-        System.out.println(circle);
 
-        circle = new Circle(3.5);
-        System.out.println(circle);
-
-        circle = new Circle(3.5, "indigo", false);
-        System.out.println(circle);
+    @Override
+    public void resize(double percent) {
+        this.setRadius(getRadius() * percent);
     }
 }

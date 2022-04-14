@@ -1,5 +1,5 @@
 package Oop.Geometry;
-public class Shape {
+public class Shape  {
     private String color = "green";
     private boolean filled = true;
 
@@ -34,13 +34,5 @@ public class Shape {
                 + " and "
                 + (isFilled() ? "filled" : "not filled");
     }
-}
- class ShapeTest {
-    public static void main(String[] args) {
-        Shape shape = new Shape();
-        System.out.println(shape);
 
-        shape = new Shape("red", false);
-        System.out.println(shape);
-    }
 }

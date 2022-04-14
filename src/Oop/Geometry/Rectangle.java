@@ -1,6 +1,6 @@
 package Oop.Geometry;
 
-public class Rectangle extends Shape {
+public class Rectangle extends Shape implements Resizeable{
     private double width = 1.0;
     private double length = 1.0;
 
@@ -51,16 +51,11 @@ public class Rectangle extends Shape {
                 + ", which is a subclass of "
                 + super.toString();
     }
-}
- class RectangleTest {
-    public static void main(String[] args) {
-        Rectangle rectangle = new Rectangle();
-        System.out.println(rectangle);
 
-        rectangle = new Rectangle(2.3, 5.8);
-        System.out.println(rectangle);
-
-        rectangle = new Rectangle(2.5, 3.8, "orange", true);
-        System.out.println(rectangle);
+    @Override
+    public void resize(double percent) {
+        this.setLength(getLength() * percent);
+        this.setWidth(getLength() * percent);
     }
 }
+
