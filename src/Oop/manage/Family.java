@@ -55,5 +55,4 @@ public class Family {
             member.set(search, person);
         }
     }
-
 }

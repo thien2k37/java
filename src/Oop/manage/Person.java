@@ -6,9 +6,6 @@ public class Person {
     private int identityCard;
 
 
-    public Person() {
-
-    }
 
     public Person(String name, String job, int identityCard) {
         this.name = name;
@@ -42,6 +39,6 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person " + "name='" + name  + ", job='" + job + "', identityCard=" + identityCard + "; ";
+        return "Person " + "name='" +getName()  + ", job='" + getJob() + "', identityCard=" + getIdentityCard()+ "; ";
     }
 }
