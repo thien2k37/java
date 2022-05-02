@@ -1,53 +1,81 @@
 package nhanvien;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         StaffManagement staffManagement = new StaffManagement();
-        /*staffManagement.add(new Staff("thi", "FullTime", "Đang làm", 2));
-        staffManagement.add(new Staff("t", "FullTime", "Đang làm", 3));
-        staffManagement.add(new Staff("ti", "FullTime", "Nghỉ Làm", 4));
-        staffManagement.add(new Staff("fso", "FullTime", "Đang làm", 5));
-        staffManagement.add(new Staff("sko", "FullTime", "Nghỉ Làm", 5));
-        staffManagement.add(new Staff("fs", "PartTime", "Nghỉ Làm", 1.2));
-        Pattern patternTime = Pattern.compile("^[1-2]{1,2}$");
+        Pattern patternMenu = Pattern.compile("^\\d$");
 
+        String select;
+        do {
+            System.out.println("----------------------------Menu----------------------------");
+            System.out.println(
+                    "0. Nhân Viên hiện có. \n"
+                            + "1. Thêm Nhân viên mới. \n"
+                            + "2. Tìm kiếm nhân viên. \n"
+                            + "3. Xóa Nhân viên. \n"
+                            + "4. Sửa Thông tin nhân viên. \n"
+                            + "5. Đổi trạng thái Làm. \n"
+                            + "6. In ra danh sách Nhân Viên FullTime. \n"
+                            + "7. Tổng lương Tổng lương Nhân viên FullTime \n"
+                            + "8. In ra danh sách Nhân Viên PartTime. \n"
+                            + "9. Tổng lương Tổng lương Nhân viên PartTime. \n"
+                    + "Thoát Nhấn Enter. "
+            );
+            System.out.println("Vui lòng chọn chức năng Theo số để tiếp tục:  ");
+            select = sc.nextLine();
+            if (!patternMenu.matcher(select).find()) {
+                System.out.println("Chỉ được nhập 1 sô từ 0-9");
+            } else {
+                switch (select) {
+                    case "0":
+                        System.out.println("Nhân Viên hiện có: ");
+                        staffManagement.show();
+                        break;
+                    case "1":
+                        System.out.println("Thêm Nhân viên mới: ");
+                        staffManagement.add();
+                        break;
+                    case "2":
+                        System.out.println("Tìm kiếm nhân viên");
+                        staffManagement.findByName();
+                        break;
+                    case "3":
+                        System.out.println("Xóa Nhân viên: ");
+                        staffManagement.removeByName();
+                        break;
+                    case "4":
+                        System.out.println("Sửa Thông tin nhân viên:");
+                        staffManagement.editByName();
+                        break;
+                    case "5":
+                        System.out.println("Đổi trạng thái Làm: ");
+                        staffManagement.updateStaffStatus();
+                        staffManagement.show();
+                        break;
+                    case "6":
+                        System.out.println("In ra danh sách Nhân Viên FullTime:");
+                        staffManagement.filterFullTime();
+                        break;
+                    case "7":
+                        System.out.println("Tổng lương danh sách Nhân Viên FullTime: ");
+                        staffManagement.calSalaryFullTime();
+                        break;
+                    case "8":
+                        System.out.println("In ra danh sách Nhân Viên PartTime");
+                        staffManagement.filterFartTime();
+                        break;
+                    case "9":
+                        System.out.println("Tổng lương Tổng lương Nhân viên PartTime");
+                        staffManagement.calSalaryPartTime();
+                    default:
+                        System.out.println("KHÔng dùng đến");
+                }
+            }
 
-        staffManagement.show();
-        System.out.println("sau khi xoa");
-        staffManagement.removeByName("thi");
-        staffManagement.show();
-
-
-
-        System.out.println("Nhân viên Làm full");
-        staffManagement.filterFullTime();
-        System.out.println("Nhân viên Làm Part");
-        staffManagement.filterFallTime();
-        System.out.println("tong luong");
-        staffManagement.calSalaryFullTime();
-
-        System.out.println("luong fast");
-        staffManagement.calSalaryPartTime();
-
-        staffManagement.show();
-        System.out.println("sửa status");
-        staffManagement.updateStaffStatus("thi",2);
-        staffManagement.show();
-
-        System.out.println("sua");
-        Staff staff = new Staff("ok", "FullTime", "Nghỉ làm", 1.2);
-        staffManagement.editByName("fso",staff);
-        staffManagement.show();
-        System.out.println("tìm tên");
-        staffManagement.findByName("ok");
-
-        staffManagement.add();*/
-        staffManagement.show();
-        staffManagement.edit();
-        staffManagement.show();
-
+        } while (patternMenu.matcher(select).find());
     }
 }

@@ -10,45 +10,52 @@ public class StaffManagement {
 
     public static List<Staff> staffList = new ArrayList<>();
     static {
-        staffList.add(new Staff("t", "FullTime", "Đang làm", 3));
-        staffList.add(new Staff("ti", "FullTime", "Nghỉ Làm", 4));
-        staffList.add(new Staff("fso", "FullTime", "Đang làm", 5));
-        staffList.add(new Staff("sko", "FullTime", "Nghỉ Làm", 5));
-        staffList.add(new Staff("fs", "PartTime", "Nghỉ Làm", 1.2));
+        staffList.add(new Staff("Nga", "FullTime", "Đang làm", 1500000));
+        staffList.add(new Staff("Thi", "FullTime", "Nghỉ Làm", 156789));
+        staffList.add(new Staff("Thien", "FullTime", "Đang làm", 70000));
+        staffList.add(new Staff("Hung", "FullTime", "Nghỉ Làm", 40000));
+        staffList.add(new Staff("Ngần", "PartTime", "Nghỉ Làm", 600000));
 
     }
     Scanner sc = new Scanner(System.in);
     public Staff input() {
-       Pattern patternName = Pattern.compile("^[A-Z][a-z]+$");
-        String nameInput;
-        do {
-            System.out.println("Nhập Tên: ");
-            nameInput = sc.nextLine();
-            if (!patternName.matcher(nameInput).find()) {
-                System.out.println(nameInput + " Không hợp lệ:");
-            } else {
-                break;
-            }
-        } while (true);
+        System.out.println("Nhập Tên Mới: ");
+        String nameInput = checkIpName();
+
+
         Pattern patternTime = Pattern.compile("^[1-2]{1,2}$");
         String type;
         do {
-            System.out.println("Nhập loại (1 = FullTime/ 2 = PartTime): ");
+            System.out.println("Nhập loại: 1.FullTime, 2.PartTime: ");
             type = sc.nextLine();
             if (!patternTime.matcher(type).find()) {
-                System.out.println(type + " Không hợp lệ");
+                System.out.println(type + " Không hợp lệ, nhập lại");
             } else {
+                System.out.println("Vì bạn quá đẹp trai nên ad sẽ cho qua.");
+               if (type.equals("1")){
+                   type = "FullTime";
+               }else {
+                   type = "PartTime";
+               }
                 break;
             }
         } while (true);
+
         Pattern patternStatus = Pattern.compile("^[1-2]{1,2}$");
         String status;
         do {
-            System.out.println("Nhập Status (1 = Đang Làm / 2 = Nghỉ làm): ");
+            System.out.println("Nhập Trạng Thái : 1.Đang Làm, 2.Nghỉ Làm");
             status = sc.nextLine();
             if (!patternStatus.matcher(status).find()) {
                 System.out.println(status + " Không hợp lệ");
             } else {
+                System.out.println("Cho qua!");
+                if(status.equals("1")) {
+                    status = "Đang Làm";
+                    break;
+                }else {
+                    status = "Nghỉ Làm";
+                }
                 break;
             }
         } while (true);
@@ -57,17 +64,37 @@ public class StaffManagement {
         return new Staff(nameInput, type, status, salary);
     }
     public void add() {
-
+        String testName = checkIpName();
+        if(findById(testName) != -1) {
+            System.out.println("Tên này đã có Người sử dung mời bạn sử dụng tên khác. ");
+        }else {
+            staffList.add(input());
+            show();
+        }
     }
-    public void edit() {
-        System.out.println("Bạn muốn sửa chương trình ");
+    public String checkIpName() {
+        Pattern patternCheckIpName = Pattern.compile("^[A-Z][a-z]+$");
+        String ipName;
+        do {
+            ipName = sc.nextLine();
+            if (!patternCheckIpName.matcher(ipName).find()) {
+                System.out.println(ipName + " Nhập tên không hợp lệ.");
+            }else {
+                System.out.println(ipName + " Tên đẹp ấy ");
+                break;
+            }
+        }while (true);
+        return ipName;
+    }
+
+    public void editByName(){
         System.out.println("Nhập tên muốn tìm ");
-        String nameEdit = sc.nextLine();
+        String nameEdit = checkIpName();
         do {
             try{
                 if (findById(nameEdit) != -1) {
-                    Staff thu = input();
-                    staffList.set(findById(nameEdit), thu);
+                    Staff staff = input();
+                    staffList.set(findById(nameEdit), staff);
                     break;
                 }
             }catch (Exception e) {
@@ -75,7 +102,7 @@ public class StaffManagement {
             }
             System.out.println(nameEdit + " Không có trong danh sách.");
             System.out.println("------------------------------");
-            edit();
+            editByName();
         }while (findById(nameEdit) != -1);
     }
 
@@ -93,40 +120,49 @@ public class StaffManagement {
         }
         return -1;
     }
-    public void findByName(String name) {
-      if (findById(name) == -1) {
-          System.out.println( name + ": không có trong danh sách.");
-      }else {
-          System.out.println(staffList.get(findById(name)));
-      }
-    }
-
-    public void editByName(String name, Staff staff) {
+    public void findByName() {
+        String name = checkIpName();
         if (findById(name) == -1) {
             System.out.println( name + ": không có trong danh sách.");
         }else {
-            staffList.set(findById(name), staff);
+            System.out.println(staffList.get(findById(name)));
         }
     }
 
-    public void removeByName(String name) {
+
+    public void removeByName() {
+        String name = checkIpName();
         if (findById(name) == -1) {
             System.out.println( name + ": không thể xóa vì không có trong danh sách.");
         }else {
             staffList.remove(staffList.get(findById(name)));
+            show();
         }
     }
 
-    public void updateStaffStatus(String name, int v) {
-        if (findById(name) == -1) {
-            System.out.println( name + ": Không có trong danh sách trong danh sách.");
-        }else {
-            if (v == 1) {
-                staffList.get(findById(name)).setStatus("Đang Làm");
-            }if (v == 2) {
-                staffList.get(findById(name)).setStatus("Nghỉ Làm");
+    public void updateStaffStatus() {
+        String name = checkIpName();
+        String updateStatus;
+        Pattern patternStatus = Pattern.compile("^[1-2]{1,2}$");
+        do {
+            System.out.println("Nhập Trạng Thái : 1.Đang Làm, 2.Nghỉ Làm");
+            updateStatus = sc.next();
+            if(!patternStatus.matcher(updateStatus).find()){
+                System.out.println(updateStatus + " Chỉ được nhập 1 hoăc 2 thôi :))");
+            }else {
+                if (findById(name) == -1) {
+                    System.out.println( name + ": Không có trong danh sách trong danh sách.");
+                }else {
+                    if (updateStatus.equals("1")) {
+                        staffList.get(findById(name)).setStatus("Đang Làm");
+                    }else {
+                        staffList.get(findById(name)).setStatus("Nghỉ Làm");
+                    }
+                }
+                break;
             }
-        }
+        }while (true);
+
     }
     public void calSalaryFullTime() {
         double sumLam = 0;
@@ -143,6 +179,7 @@ public class StaffManagement {
         }
         System.out.println("Tong luong nhân viên fulll đang làm: " + sumLam);
         System.out.println("Tong luong nhân viên fulll Nghỉ Làm: " + sumNghi);
+        System.out.println("Tổng: " + sumLam + sumNghi);
 
     }
     public void calSalaryPartTime(){
@@ -158,8 +195,9 @@ public class StaffManagement {
                 }
             }
         }
-        System.out.println("Tong luong nhân viên part đang làm: " + sumSalaryPartTime1 / 2);
-        System.out.println("Tong luong nhân viên part Nghỉ Làm: " + sumSalaryPartTime2 / 2);
+        System.out.println("Tổng lương nhân Viên PartTime Đang làm: " +  sumSalaryPartTime1 / 2);
+        System.out.println("Tổng lương nhân viên PartTime Nghỉ Làm: " +  sumSalaryPartTime2 / 2);
+        System.out.println("Tổng Lương PartTime" + (sumSalaryPartTime1 + sumSalaryPartTime2)/2);
     }
     public void filterFullTime(){
         for (Staff staff : staffList) {
@@ -168,7 +206,7 @@ public class StaffManagement {
             }
         }
     }
-    public void filterFallTime(){
+    public void filterFartTime(){
         for (Staff staff : staffList) {
             if (staff.getType().equals("PartTime")) {
                 System.out.println(staff);
