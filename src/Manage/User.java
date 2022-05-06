@@ -1,16 +1,16 @@
 package Manage;
 
-public class Users {
+public class User {
     private int idUser;
     private String userName;
     private String passWord;
     private String status;
     private Role role;
 
-    public Users() {
+    public User() {
     }
 
-    public Users(int idUser, String userName, String passWord, String status, Role role) {
+    public User(int idUser, String userName, String passWord, String status, Role role) {
         this.idUser = idUser;
         this.userName = userName;
         this.passWord = passWord;
@@ -60,6 +60,6 @@ public class Users {
 
     @Override
     public String toString() {
-        return "IdUser: " + getIdUser() + ", UserName: " + getUserName() + ", Pass: " + getPassWord() + ", Status: " + getStatus() + ", Role: " + getRole();
+        return idUser + "," + userName + "," + passWord + "," + status + "," + role;
     }
 }

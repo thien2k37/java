@@ -1,44 +1,84 @@
 package Manage;
 
+import Manage.file.FileUserCSV;
+
+import java.io.IOException;
 import java.util.Scanner;
-import java.util.regex.Pattern;
+
 
 public class Main {
-    public static void main(String[] args) {
-        menu();
-    }
-    public static void menu(){
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        Scanner scanner = new Scanner(System.in);
         ManageUser manageUser = new ManageUser();
-        Pattern menu = Pattern.compile("^[1,3]$");
-        String select;
-        do {
-
-            System.out.println("=====MENU=====\n"+
-                    "1. Đăng Nhập  \n"
-                            + "2. Đăng Ký \n"
-                            + "3. Thoát\n"
-                    + "=====+====="
-            );
-            System.out.println("Chọn đi ");
-            select = sc.nextLine();
-            if (!menu.matcher(select).find()) {
-                System.out.println("chỉ được nhập 1, 2 hoặc 3 để đi tiếp ");
-            }else {
-                switch (select) {
-                    case "1":
-                        manageUser.register();
-                        break;
-                    case "2":
-                        manageUser.login();
-                        break;
-                    case "3":
-                        manageUser.exit();
-                        break;
-                    default:
-                }
+        ManageRole manageRole = new ManageRole();
+        int choice = -1;
+        while (choice != 0) {
+            System.out.println("Menu");
+            System.out.println("1. Đăng nhập!");
+            System.out.println("2. Đăng ký!");
+            System.out.println("Nhập vào lựa chọn!");
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    System.out.println("Đăng nhập");
+                    System.out.println("Nhập vào usn: ");
+                    scanner.nextLine();
+                    String usn = scanner.nextLine();
+                    System.out.println("Nhập vào pass: ");
+                    String pass = scanner.nextLine();
+                    if (manageUser.login(usn, pass) == 1) {
+                        int choice1 = -1;
+                        while (choice1 != 0) {
+                            System.out.println("Menu Customer");
+                            System.out.println("0. Log out");
+                            System.out.println("1. Xem thông tin");
+                            System.out.println("2. Đổi pass");
+                            if (ManageUser.currentUser.getRole().getName().equals("Admin")) {
+                                System.out.println("3. Thêm sửa xoá Role");
+                            }
+                            System.out.println("Nhập vào lựa chọn!");
+                            choice1 = scanner.nextInt();
+                            switch (choice1) {
+                                case 1:
+                                    System.out.println("1. Xem thông tin");
+                                    break;
+                                case 2:
+                                    System.out.println("Nhập pass mới");
+                                    scanner.nextLine();
+                                    String newPass = scanner.nextLine();
+                                    ManageUser.currentUser.setPassWord(newPass);
+                                    FileUserCSV.writeToFile(manageUser.getUserList());
+                                    break;
+                                case 0:
+                                    ManageUser.currentUser = null;
+                                    break;
+                            }
+                        }
+                    }
+                    break;
+                case 2:
+                    System.out.println("Đăng Ký");
+                    System.out.println("Nhập vào id: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Nhập vào usn: ");
+                    String username = scanner.nextLine();
+                    System.out.println("Nhập vào pass: ");
+                    String password = scanner.nextLine();
+                    String status = "1";
+                    System.out.println("Nhập vào id role: ");
+                    manageRole.showAll();
+                    int idRole = scanner.nextInt();
+                    Role role = manageRole.findById(idRole);
+                    User user = new User(id, username, password, status, role);
+                    manageUser.add(user);
+                    FileUserCSV.writeToFile(manageUser.getUserList());
+                    break;
+                case 0:
+                    System.out.println("Bye");
+                    break;
             }
-            menu();
-        }while (menu.matcher(select).find());
+            System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        }
     }
 }

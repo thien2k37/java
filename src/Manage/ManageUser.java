@@ -1,54 +1,60 @@
 package Manage;
 
 
+import Manage.file.FileUserCSV;
+
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class ManageUser {
     Scanner sc = new Scanner(System.in);
-    List<Users> userList = new ArrayList<>();
-    ManageRole manageRole = new ManageRole();
-
-    public Users input() {
-        System.out.println("Nhập ID USER: ");
-        int ipID = sc.nextInt();
-        System.out.println("Tên Đăng Nhập: ");
-        String ipName = sc.nextLine();
-        sc.nextLine();
-        System.out.println("Mật Khẩu: ");
-        String pass = sc.nextLine();
-        System.out.println("Cập Nhật Trạng Thái: ");
-        String status = sc.nextLine();
-        System.out.println("Chọn Nhân vật");
-        manageRole.showAll();
-        int idRole = sc.nextInt();
-        return new Users(ipID, ipName, pass, status, ManageRole.roleList.get(manageRole.findById(idRole)));
+    List<User> userList = new ArrayList<>();
+    public static User currentUser = null;
+    public ManageUser() throws FileNotFoundException {
+        userList = FileUserCSV.realFromFile();
     }
-    public void register() {
-        userList.add(input());
+    public int login(String username, String password) {
+        for (User user : userList) {
+            if (user.getUserName().equals(username) && user.getPassWord().equals(password)) {
+                currentUser = user;
+                return 1;
+            }
+        }
+        return 0;
     }
-    public void login() {
-        System.out.println("Tên Tài Khoản: ");
-        String user = sc.nextLine();
-        System.out.println("Nhập Mật Khẩu: ");
-        String pass = sc.nextLine();
-        if(findByUser(user,pass) != -1) {
-            System.out.println("Tài Khoản hoặc Mật Khẩu khoogn chính xác.");
-        }else {
 
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void add(User user) {
+        userList.add(user);
+    }
+    public User findById(int id) {
+        return userList.get(findIndexById(id));
+    }
+
+    public void edit(int id, User user) {
+        userList.set(findIndexById(id), user);
+    }
+    public void delete(int id){
+        userList.remove(findIndexById(id));
+    }
+
+    public void findAll() {
+        for (User user : userList) {
+            System.out.println(user);
         }
     }
-    public int findByUser(String user, String pass) {
+    public int findIndexById(int id) {
         for (int i = 0; i < userList.size(); i++) {
-            if (userList.get(i).getUserName().equals(user) && userList.get(i).getPassWord().equals(pass)) {
+            if (userList.get(i).getIdUser() == id) {
                 return i;
             }
         }
         return -1;
-    }
-    public void exit(){
-        System.exit(0);
     }
 
 }

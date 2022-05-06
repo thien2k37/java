@@ -40,6 +40,6 @@ public class Role {
 
     @Override
     public String toString() {
-        return "ID: " + getId() + ", Name: " + getName() + ", Description: " + getDescription();
+        return id + "," + name + "," + description;
     }
 }
