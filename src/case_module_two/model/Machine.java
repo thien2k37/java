@@ -2,7 +2,7 @@ package case_module_two.model;
 
 public class Machine {
     private int namePC;
-    static int id = 0;
+    static int id = 1;
     private String statusPC;
 
     public Machine(String statusPC) {
@@ -28,6 +28,6 @@ public class Machine {
 
     @Override
     public String toString() {
-        return "Máy: "+ getNamePC() + "," + getStatusPC();
+        return getNamePC() + "," + getStatusPC();
     }
 }

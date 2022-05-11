@@ -27,15 +27,18 @@ public class ManageMachine implements General<Machine> {
     public void add() throws IOException {
         getMachineList().add(inputMachine());
         machineCSV.writeToFile(getMachineList());
+        System.out.println("Thêm thành công");
         display();
     }
 
     @Override
-    public void edit(int id) throws IOException {
-        id = check.checkInteger();
+    public void edit() throws IOException {
+        System.out.println("nhập ID để sửa");
+        int id = check.checkInteger();
         if(findIndexById(id) != -1) {
             getMachineList().set(findIndexById(id), inputMachine());
             machineCSV.writeToFile(getMachineList());
+            System.out.println("Sửa thành công ");
         }else {
             System.out.println(id + "không có trong danh sách: ");
         }
@@ -43,8 +46,9 @@ public class ManageMachine implements General<Machine> {
 
     @Override
     //xong
-    public void delete(int id) throws IOException {
-        id = check.checkInteger();
+    public void delete() throws IOException {
+        System.out.println("Nhập Id để xóa");
+        int id = check.checkInteger();
         if (findIndexById(id) != -1) {
             getMachineList().remove(findIndexById(id));
             machineCSV.writeToFile(getMachineList());
@@ -60,10 +64,12 @@ public class ManageMachine implements General<Machine> {
         for (Machine o : machineList) {
             System.out.println(o);
         }
+        System.out.println("-----------------------------------------");
     }
 
     //done
     public void findPcById(){
+        System.out.println("Nhập id để tìm máy");
         int id = check.checkInteger();
         if(findIndexById(id) == -1) {
             System.out.println(id + " ID này ko có trong danh sách.");
@@ -105,4 +111,14 @@ public class ManageMachine implements General<Machine> {
         return new Machine(status);
     }
 
+    public Machine findPcById(int id) {
+        return machineList.get(findIndexById(id));
+    }
+    public void showPc() {
+        for (Machine machine: machineList) {
+            if(machine.getStatusPC().equals("ON")) {
+                System.out.println(machine);
+            }
+        }
+    }
 }

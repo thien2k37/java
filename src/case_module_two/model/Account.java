@@ -8,6 +8,7 @@ public class Account {
     private int age;
     private String email;
     private String phoneNumber;
+    private Machine machine;
 
     public Account() {
     }
@@ -20,7 +21,6 @@ public class Account {
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
-
     public int getId() {
         return id;
     }
@@ -72,6 +72,6 @@ public class Account {
 
     @Override
     public String toString() {
-        return "ID" + getId() + "," + getAccountName() + "," + getPassWord() + "," + getAge() + "," + getEmail() + "," + getPhoneNumber();
+        return "ID: " + getId() + "," + getAccountName() + "," + getPassWord() + "," + getAge() + "," + getEmail() + "," + getPhoneNumber();
     }
 }

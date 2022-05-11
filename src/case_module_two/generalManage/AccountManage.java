@@ -10,6 +10,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class AccountManage implements General<Account> {
+
     InputCheck inputCheck = new InputCheck();
     Scanner sc = new Scanner(System.in);
     List<Account> list;
@@ -41,16 +42,26 @@ public class AccountManage implements General<Account> {
     }
 
     @Override
-    public void edit(int id) {
-        id = inputCheck.checkInteger();
-        getList().set(findIndexById(id), inputAccount());
+    public void edit() {
+        System.out.println("Nhập id sửa");
+        int id = inputCheck.checkInteger();
+        if (findIndexById(id) != 1) {
+            System.out.println(id + " Không có máy nào nhận");
+        }else {
+            getList().set(findIndexById(id), inputAccount());
+        }
     }
 
     @Override
-    public void delete(int id) throws IOException {
-        id = inputCheck.checkInteger();
-        getList().remove(findIndexById(id));
-        fileAccountCSV.writeToFile(getList());
+    public void delete() throws IOException {
+        System.out.println("Nhập id để xóa");
+        int id = inputCheck.checkInteger();
+        if(findIndexById(id) != 1) {
+            System.out.println(id + " không có máy nào để xóa");
+        }else {
+            getList().remove(findIndexById(id));
+            fileAccountCSV.writeToFile(getList());
+        }
     }
 
     //done
@@ -144,10 +155,10 @@ public class AccountManage implements General<Account> {
         String pass =  sc.nextLine();
         System.out.println("nhập tuổi");
         int age = Integer.parseInt(String.valueOf(checkAge()));
-        System.out.println("email");
         String email = checkEmail();
-        System.out.println("Nhập số điện thoại bạn!");
+        System.out.println("Nhập số điện thoại khách!");
         String phoneNB  = phoneNB();
         return new Account(nameAC, pass, age, email, phoneNB);
     }
+
 }
