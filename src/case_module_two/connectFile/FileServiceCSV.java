@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class FileServiceCSV {
     public static List<Service> readFileService() throws IOException {
         List<Service> serviceList = new ArrayList<>();
-        FileReader fr = new FileReader("/home/thien/IdeaProjects/APJ/src/case_module_two/data/dataService.csv");
+        FileReader fr = new FileReader("/home/thien/IdeaProjects/java/src/case_module_two/data/dataService.csv");
         BufferedReader br = new BufferedReader(fr);
         while (true) {
             String line = br.readLine();
@@ -23,7 +23,7 @@ public class FileServiceCSV {
         return serviceList;
     }
     public void writeToFileService(List<Service> serviceList) throws IOException {
-        FileWriter writer = new FileWriter("/home/thien/IdeaProjects/APJ/src/case_module_two/data/dataService.csv");
+        FileWriter writer = new FileWriter("/home/thien/IdeaProjects/java/src/case_module_two/data/dataService.csv");
         BufferedWriter bw = new BufferedWriter(writer);
         for (Service service: serviceList) {
             bw.write(service.toString());

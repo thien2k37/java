@@ -11,7 +11,7 @@ import java.util.List;
 public class FileMachineCSV {
     public static List<Machine> readFromFile() throws IOException {
         List<Machine> machineList = new ArrayList<>();
-        FileReader fr = new FileReader("/home/thien/IdeaProjects/APJ/src/case_module_two/data/dataMachine.csv");
+        FileReader fr = new FileReader("/home/thien/IdeaProjects/java/src/case_module_two/data/dataMachine.csv");
         BufferedReader br = new BufferedReader(fr);
         while (true) {
             String line = br.readLine();
@@ -25,7 +25,7 @@ public class FileMachineCSV {
         return machineList;
     }
     public void writeToFile(List<Machine> machineList) throws IOException {
-       FileWriter fw = new FileWriter("/home/thien/IdeaProjects/APJ/src/case_module_two/data/dataMachine.csv");
+       FileWriter fw = new FileWriter("/home/thien/IdeaProjects/java/src/case_module_two/data/dataMachine.csv");
        BufferedWriter bw = new BufferedWriter(fw);
         for (Machine machine : machineList) {
             bw.write(machine.toString());

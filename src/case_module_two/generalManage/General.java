@@ -1,6 +1,5 @@
 package case_module_two.generalManage;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public interface General<T> {

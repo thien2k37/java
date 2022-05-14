@@ -10,7 +10,7 @@ import java.util.List;
 public class FileAccountCSV {
     public static List<Account> readFileAc() throws IOException {
         List<Account> accountList = new ArrayList<>();
-        FileReader fr = new FileReader("/home/thien/IdeaProjects/APJ/src/case_module_two/data/dataAC.csv");
+        FileReader fr = new FileReader("/home/thien/IdeaProjects/java/src/case_module_two/data/dataAC.csv");
         BufferedReader br = new BufferedReader(fr);
         while (true) {
             String line = br.readLine();
@@ -28,7 +28,7 @@ public class FileAccountCSV {
         return accountList;
     }
     public void writeToFile(List<Account> accountList) throws IOException {
-        FileWriter writer = new FileWriter("/home/thien/IdeaProjects/APJ/src/case_module_two/data/dataAC.csv");
+        FileWriter writer = new FileWriter("/home/thien/IdeaProjects/java/src/case_module_two/data/dataAC.csv");
         BufferedWriter bw = new BufferedWriter(writer);
         for (Account account: accountList) {
             bw.write(account.toString());
